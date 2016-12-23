@@ -32,6 +32,13 @@ buffer :: ~buffer()
     delete [] this->_bytes;
 }
 
+// Getters
+
+const size_t & buffer :: size() const
+{
+  return this->_size;
+}
+
 // Methods
 
 void buffer :: alloc(const size_t & size)
@@ -49,6 +56,16 @@ void buffer :: alloc(const size_t & size)
 }
 
 // Operators
+
+char & buffer :: operator [] (const size_t & index)
+{
+  return this->_bytes[index];
+}
+
+const char & buffer :: operator [] (const size_t & index) const
+{
+  return this->_bytes[index];
+}
 
 buffer & buffer :: operator = (const buffer & that)
 {
@@ -70,4 +87,16 @@ buffer & buffer :: operator = (buffer && that)
   that._alloc = 0;
   
   return *this;
+}
+
+// Casting
+
+buffer :: operator char * ()
+{
+  return this->_bytes;
+}
+
+buffer :: operator char * const () const
+{
+  return this->_bytes;
 }

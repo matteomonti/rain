@@ -32,14 +32,26 @@ public:
   
   ~buffer();
   
+  // Getters
+  
+  const size_t & size() const;
+  
   // Methods
   
   void alloc(const size_t &);
   
   // Operators
   
+  char & operator [] (const size_t &);
+  const char & operator [] (const size_t &) const;
+  
   buffer & operator = (const buffer &);
   buffer & operator = (buffer &&);
+  
+  // Casting
+  
+  operator char * ();
+  operator char * const () const;
 };
 
 #endif
