@@ -1,6 +1,7 @@
 #include <iostream>
 
+#include "data/buffer.hpp"
+
 int main()
 {
-  std :: cout << "Hello World!" << std :: endl;
 }
