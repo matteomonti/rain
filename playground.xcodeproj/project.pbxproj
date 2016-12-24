@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F0A59B291E0DB70C00F55395 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B281E0DB70C00F55395 /* main.cpp */; };
 		F0A59B331E0DBD7300F55395 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B301E0DBD7300F55395 /* buffer.cpp */; };
-		F0A59B441E0EBA7F00F55395 /* visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B411E0EBA7F00F55395 /* visitor.cpp */; };
+		F0A59B441E0EBA7F00F55395 /* buffer_visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B411E0EBA7F00F55395 /* buffer_visitor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,13 +34,15 @@
 		F0A59B381E0E8EF800F55395 /* progressive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = progressive.hpp; path = macros/progressive.hpp; sourceTree = "<group>"; };
 		F0A59B3B1E0EA48D00F55395 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = bytewise/macro.h; sourceTree = "<group>"; };
 		F0A59B3C1E0EA48D00F55395 /* macro.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = macro.hpp; path = bytewise/macro.hpp; sourceTree = "<group>"; };
-		F0A59B411E0EBA7F00F55395 /* visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = visitor.cpp; path = bytewise/visitor.cpp; sourceTree = "<group>"; };
+		F0A59B411E0EBA7F00F55395 /* buffer_visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = buffer_visitor.cpp; path = bytewise/buffer_visitor.cpp; sourceTree = "<group>"; };
 		F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffer_visitor.h; path = bytewise/buffer_visitor.h; sourceTree = "<group>"; };
 		F0A59B431E0EBA7F00F55395 /* buffer_visitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = buffer_visitor.hpp; path = bytewise/buffer_visitor.hpp; sourceTree = "<group>"; };
 		F0A59B461E0EBB5600F55395 /* valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = valid.h; path = bytewise/valid.h; sourceTree = "<group>"; };
 		F0A59B471E0EBB5600F55395 /* valid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = valid.hpp; path = bytewise/valid.hpp; sourceTree = "<group>"; };
 		F0A59B491E0EBB9E00F55395 /* count.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = count.h; path = bytewise/count.h; sourceTree = "<group>"; };
 		F0A59B4A1E0EBB9E00F55395 /* count.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = count.hpp; path = bytewise/count.hpp; sourceTree = "<group>"; };
+		F0A59B4B1E0EF17F00F55395 /* arithmetic_visitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = arithmetic_visitor.h; path = bytewise/arithmetic_visitor.h; sourceTree = "<group>"; };
+		F0A59B4C1E0EF17F00F55395 /* arithmetic_visitor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = arithmetic_visitor.hpp; path = bytewise/arithmetic_visitor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +111,11 @@
 				F0A59B4A1E0EBB9E00F55395 /* count.hpp */,
 				F0A59B461E0EBB5600F55395 /* valid.h */,
 				F0A59B471E0EBB5600F55395 /* valid.hpp */,
+				F0A59B4B1E0EF17F00F55395 /* arithmetic_visitor.h */,
+				F0A59B4C1E0EF17F00F55395 /* arithmetic_visitor.hpp */,
 				F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */,
 				F0A59B431E0EBA7F00F55395 /* buffer_visitor.hpp */,
-				F0A59B411E0EBA7F00F55395 /* visitor.cpp */,
+				F0A59B411E0EBA7F00F55395 /* buffer_visitor.cpp */,
 			);
 			name = bytewise;
 			sourceTree = "<group>";
@@ -175,7 +179,7 @@
 			files = (
 				F0A59B291E0DB70C00F55395 /* main.cpp in Sources */,
 				F0A59B331E0DBD7300F55395 /* buffer.cpp in Sources */,
-				F0A59B441E0EBA7F00F55395 /* visitor.cpp in Sources */,
+				F0A59B441E0EBA7F00F55395 /* buffer_visitor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

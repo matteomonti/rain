@@ -3,44 +3,10 @@
 #include "bytewise/macro.hpp"
 #include "bytewise/valid.hpp"
 #include "data/buffer.hpp"
+#include "bytewise/arithmetic_visitor.hpp"
 
-class otherclass
-{
-  // Self
-  
-  typedef otherclass self;
-  
-  // Members
-  
-  buffer * a;
-  
-public:
-  
-  bytewise(a);
-};
-
-class myclass
-{
-  // Self
-  
-  typedef myclass self;
-  
-  // Members
-  
-  buffer a[12];
-  int b;
-  double c[44];
-  otherclass d;
-  
-public:
-  
-  bytewise(a);
-  bytewise(b);
-  bytewise(c);
-  bytewise(d);
-};
 
 int main()
 {
-  std :: cout << bytewise :: valid <myclass> :: value << std :: endl;
+  std :: cout << std :: is_same <bytewise :: arithmetic_visitor :: ranges <44, 2, 50, 4, 54, 2>, bytewise :: arithmetic_visitor :: append <bytewise :: arithmetic_visitor :: ranges <44, 2, 50, 4, 54, 2>, bytewise :: arithmetic_visitor :: ranges <>> :: type> :: value << std :: endl;
 }
