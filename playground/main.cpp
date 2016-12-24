@@ -1,8 +1,23 @@
 #include <iostream>
 
-#include "data/buffer.hpp"
 #include "bytewise/macro.hpp"
-#include "bytewise/count.hpp"
+#include "bytewise/valid.hpp"
+#include "data/buffer.hpp"
+
+class otherclass
+{
+  // Self
+  
+  typedef otherclass self;
+  
+  // Members
+  
+  buffer * a;
+  
+public:
+  
+  bytewise(a);
+};
 
 class myclass
 {
@@ -12,10 +27,10 @@ class myclass
   
   // Members
   
-  int a;
+  buffer a[12];
   int b;
   double c[44];
-  char d;
+  otherclass d;
   
 public:
   
@@ -27,5 +42,5 @@ public:
 
 int main()
 {
-  std :: cout << bytewise :: count <myclass> :: value << std :: endl;
+  std :: cout << bytewise :: valid <myclass> :: value << std :: endl;
 }

@@ -3,6 +3,10 @@
 
 #include "valid.h"
 
+// Includes
+
+#include "count.hpp"
+
 namespace bytewise
 {
 
