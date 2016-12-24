@@ -29,6 +29,10 @@
 		F0A59B301E0DBD7300F55395 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = buffer.cpp; path = data/buffer.cpp; sourceTree = "<group>"; };
 		F0A59B311E0DBD7300F55395 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffer.h; path = data/buffer.h; sourceTree = "<group>"; };
 		F0A59B321E0DBD7300F55395 /* buffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = buffer.hpp; path = data/buffer.hpp; sourceTree = "<group>"; };
+		F0A59B371E0E8EF800F55395 /* progressive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = progressive.h; path = macros/progressive.h; sourceTree = "<group>"; };
+		F0A59B381E0E8EF800F55395 /* progressive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = progressive.hpp; path = macros/progressive.hpp; sourceTree = "<group>"; };
+		F0A59B3B1E0EA48D00F55395 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = bytewise/macro.h; sourceTree = "<group>"; };
+		F0A59B3C1E0EA48D00F55395 /* macro.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = macro.hpp; path = bytewise/macro.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 		F0A59B271E0DB70C00F55395 /* playground */ = {
 			isa = PBXGroup;
 			children = (
+				F0A59B351E0E8DF700F55395 /* macros */,
 				F0A59B2F1E0DBBD600F55395 /* data */,
+				F0A59B3A1E0EA44E00F55395 /* bytewise */,
 				F0A59B281E0DB70C00F55395 /* main.cpp */,
 			);
 			path = playground;
@@ -75,6 +81,24 @@
 				F0A59B301E0DBD7300F55395 /* buffer.cpp */,
 			);
 			name = data;
+			sourceTree = "<group>";
+		};
+		F0A59B351E0E8DF700F55395 /* macros */ = {
+			isa = PBXGroup;
+			children = (
+				F0A59B371E0E8EF800F55395 /* progressive.h */,
+				F0A59B381E0E8EF800F55395 /* progressive.hpp */,
+			);
+			name = macros;
+			sourceTree = "<group>";
+		};
+		F0A59B3A1E0EA44E00F55395 /* bytewise */ = {
+			isa = PBXGroup;
+			children = (
+				F0A59B3B1E0EA48D00F55395 /* macro.h */,
+				F0A59B3C1E0EA48D00F55395 /* macro.hpp */,
+			);
+			name = bytewise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
