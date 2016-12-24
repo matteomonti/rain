@@ -5,6 +5,7 @@
 
 #define __forward__
 #include "../data/buffer.h"
+#include "visitor.h"
 #undef __forward__
 
 // Includes
@@ -17,26 +18,25 @@
                                                                     \
 progressive(__bytewise__, name)                                     \
 {                                                                   \
+  friend class :: bytewise :: visitor;                              \
+                                                                    \
+  typedef decltype(self :: name) type;                              \
+                                                                    \
   static constexpr const size_t offset()                            \
   {                                                                 \
     return offsetof(self, name);                                    \
   }                                                                 \
                                                                     \
-  static constexpr const size_t size()                              \
+private:                                                            \
+                                                                    \
+  static inline auto & get(self & that)                             \
   {                                                                 \
-    return sizeof(decltype(((self *) nullptr)->name));              \
+    return that.name;                                               \
   }                                                                 \
                                                                     \
-  static constexpr const bool arithmetic()                          \
+  static inline const auto & get(const self & that)                 \
   {                                                                 \
-    return std :: is_arithmetic <decltype(((self *) nullptr)->name)>\
-        :: value;                                                   \
-  }                                                                 \
-                                                                    \
-  static constexpr const bool buffer()                              \
-  {                                                                 \
-    return std :: is_same <:: buffer, decltype(((self *)            \
-        nullptr)->name)> :: value;                                  \
+    return that.name;                                               \
   }                                                                 \
 };
 

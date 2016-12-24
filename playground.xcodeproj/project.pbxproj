@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F0A59B291E0DB70C00F55395 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B281E0DB70C00F55395 /* main.cpp */; };
 		F0A59B331E0DBD7300F55395 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B301E0DBD7300F55395 /* buffer.cpp */; };
+		F0A59B441E0EBA7F00F55395 /* visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0A59B411E0EBA7F00F55395 /* visitor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,9 @@
 		F0A59B381E0E8EF800F55395 /* progressive.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = progressive.hpp; path = macros/progressive.hpp; sourceTree = "<group>"; };
 		F0A59B3B1E0EA48D00F55395 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = bytewise/macro.h; sourceTree = "<group>"; };
 		F0A59B3C1E0EA48D00F55395 /* macro.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = macro.hpp; path = bytewise/macro.hpp; sourceTree = "<group>"; };
+		F0A59B411E0EBA7F00F55395 /* visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = visitor.cpp; path = bytewise/visitor.cpp; sourceTree = "<group>"; };
+		F0A59B421E0EBA7F00F55395 /* visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visitor.h; path = bytewise/visitor.h; sourceTree = "<group>"; };
+		F0A59B431E0EBA7F00F55395 /* visitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = visitor.hpp; path = bytewise/visitor.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,9 @@
 			children = (
 				F0A59B3B1E0EA48D00F55395 /* macro.h */,
 				F0A59B3C1E0EA48D00F55395 /* macro.hpp */,
+				F0A59B421E0EBA7F00F55395 /* visitor.h */,
+				F0A59B431E0EBA7F00F55395 /* visitor.hpp */,
+				F0A59B411E0EBA7F00F55395 /* visitor.cpp */,
 			);
 			name = bytewise;
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 			files = (
 				F0A59B291E0DB70C00F55395 /* main.cpp in Sources */,
 				F0A59B331E0DBD7300F55395 /* buffer.cpp in Sources */,
+				F0A59B441E0EBA7F00F55395 /* visitor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
