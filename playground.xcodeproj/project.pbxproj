@@ -232,6 +232,7 @@
 		F0A59B2D1E0DB70C00F55395 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -239,6 +240,7 @@
 		F0A59B2E1E0DB70C00F55395 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
