@@ -5,7 +5,7 @@
 
 namespace bytewise
 {
-
+  
 };
 
 #endif

@@ -2,6 +2,7 @@
 
 #include "data/buffer.hpp"
 #include "bytewise/macro.hpp"
+#include "bytewise/count.hpp"
 
 class myclass
 {
@@ -26,5 +27,5 @@ public:
 
 int main()
 {
-  std :: cout << std :: is_same <int, myclass :: __bytewise__ <0, false> :: type> :: value << std :: endl;
+  std :: cout << bytewise :: count <myclass> :: value << std :: endl;
 }
