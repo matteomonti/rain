@@ -35,8 +35,8 @@
 		F0A59B3B1E0EA48D00F55395 /* macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = macro.h; path = bytewise/macro.h; sourceTree = "<group>"; };
 		F0A59B3C1E0EA48D00F55395 /* macro.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = macro.hpp; path = bytewise/macro.hpp; sourceTree = "<group>"; };
 		F0A59B411E0EBA7F00F55395 /* visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = visitor.cpp; path = bytewise/visitor.cpp; sourceTree = "<group>"; };
-		F0A59B421E0EBA7F00F55395 /* visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = visitor.h; path = bytewise/visitor.h; sourceTree = "<group>"; };
-		F0A59B431E0EBA7F00F55395 /* visitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = visitor.hpp; path = bytewise/visitor.hpp; sourceTree = "<group>"; };
+		F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = buffer_visitor.h; path = bytewise/buffer_visitor.h; sourceTree = "<group>"; };
+		F0A59B431E0EBA7F00F55395 /* buffer_visitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = buffer_visitor.hpp; path = bytewise/buffer_visitor.hpp; sourceTree = "<group>"; };
 		F0A59B461E0EBB5600F55395 /* valid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = valid.h; path = bytewise/valid.h; sourceTree = "<group>"; };
 		F0A59B471E0EBB5600F55395 /* valid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = valid.hpp; path = bytewise/valid.hpp; sourceTree = "<group>"; };
 		F0A59B491E0EBB9E00F55395 /* count.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = count.h; path = bytewise/count.h; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				F0A59B4A1E0EBB9E00F55395 /* count.hpp */,
 				F0A59B461E0EBB5600F55395 /* valid.h */,
 				F0A59B471E0EBB5600F55395 /* valid.hpp */,
-				F0A59B421E0EBA7F00F55395 /* visitor.h */,
-				F0A59B431E0EBA7F00F55395 /* visitor.hpp */,
+				F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */,
+				F0A59B431E0EBA7F00F55395 /* buffer_visitor.hpp */,
 				F0A59B411E0EBA7F00F55395 /* visitor.cpp */,
 			);
 			name = bytewise;

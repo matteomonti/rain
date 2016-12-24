@@ -5,7 +5,7 @@
 
 #define __forward__
 #include "../data/buffer.h"
-#include "visitor.h"
+#include "buffer_visitor.h"
 #undef __forward__
 
 // Includes
@@ -18,7 +18,7 @@
                                                                     \
 progressive(__bytewise__, name)                                     \
 {                                                                   \
-  friend class :: bytewise :: visitor;                              \
+  friend class :: bytewise :: buffer_visitor;                       \
                                                                     \
   typedef decltype(self :: name) type;                              \
                                                                     \
