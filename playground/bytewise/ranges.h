@@ -13,6 +13,11 @@ namespace bytewise
 {
   template <size_t, size_t, typename> struct shift_ranges;
   
+  template <size_t shift, size_t first_offset> struct shift_ranges <shift, first_offset, ranges <>>
+  {
+    typedef ranges <> type;
+  };
+  
   template <size_t shift, size_t first_offset, size_t first_size, size_t ... tail> struct shift_ranges <0, shift, ranges <first_offset, first_size, tail...>>
   {
     typedef ranges <first_offset, first_size, tail...> type;

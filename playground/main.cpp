@@ -5,51 +5,66 @@
 #include "data/buffer.hpp"
 #include "bytewise/arithmetic_visitor.hpp"
 
-class asd
+template <size_t ...> struct printer;
+
+template <> struct printer <>
+{
+  static void print()
+  {
+    std :: cout << std :: endl;
+  }
+};
+
+template <size_t first, size_t ... others> struct printer <first, others...>
+{
+  static void print()
+  {
+    std :: cout << first << "\t";
+    printer <others...> :: print();
+  }
+};
+
+template <size_t ... values> void print(bytewise :: ranges <values...>)
+{
+  printer <values...> :: print();
+}
+
+class myotherclass
 {
   // Self
   
-  typedef asd self;
+  typedef myotherclass self;
   
   // Members
   
   int a;
-  int b;
+  int b[3];
   
 public:
   
   // Bytewise
   
-  bytewise(a);
   bytewise(b);
 };
 
-class test
+class myclass
 {
   // Self
   
-  typedef test self;
+  typedef myclass self;
   
   // Members
   
-  int a;
-  int b;
-  double c;
-  
-  asd d;
+  myotherclass a[2];
   
 public:
   
   // Bytewise
   
   bytewise(a);
-  bytewise(b);
-  bytewise(c);
-  
-  bytewise(d);
 };
 
 int main()
 {
-  std :: cout << std :: is_same <bytewise :: ranges <0, 4, 4, 4, 8, 8, 16, 4, 20, 4>, bytewise :: arithmetic_visitor <test> :: type> :: value << std :: endl;
+  print(bytewise :: arithmetic_visitor <myclass> :: type {});
 }

@@ -29,29 +29,50 @@ namespace bytewise
     
     template <ssize_t index, bool mdummy> struct member_iterator
     {
-      template <bool, bool, bool> struct conditional;
+      typedef typename atype :: template __bytewise__ <index, false> :: type member_type;
       
-      template <bool, bool, bool> struct conditional
+      typedef typename std :: remove_all_extents <member_type> :: type root_type;
+      
+      template <ssize_t, typename> struct repeat;
+      
+      template <size_t ... values> struct repeat <-1, ranges <values...>>
       {
         typedef ranges <> type;
       };
       
-      template <bool cdummy> struct conditional <true, false, cdummy>
+      template <ssize_t reps, size_t ... values> struct repeat <reps, ranges <values...>>
       {
-        typedef ranges <atype :: template __bytewise__ <index, false> :: offset(), sizeof(typename atype :: template __bytewise__ <index, false> :: type)> type;
+        typedef typename append <typename repeat <reps - 1, ranges <values...>> :: type, typename ranges <values...> :: template shift <sizeof(root_type) * reps>> :: type type;
       };
       
-      template <bool cdummy> struct conditional <false, true, cdummy>
+      template <bool, bool, bool, bool> struct conditional;
+      
+      template <bool, bool, bool, bool> struct conditional
       {
-        typedef typename arithmetic_visitor <typename atype :: template __bytewise__ <index, false> :: type> :: type :: template shift <atype :: template __bytewise__ <index, false> :: offset()> type;
+        typedef ranges <> type;
       };
       
-      typedef typename conditional <std :: is_arithmetic <typename atype :: template __bytewise__ <index, false> :: type> :: value, std :: is_class <typename atype :: template __bytewise__ <index, false> :: type> :: value, false> :: type member_type;
+      template <bool cdummy> struct conditional <false, true, false, cdummy>
+      {
+        typedef ranges <atype :: template __bytewise__ <index, false> :: offset(), sizeof(root_type)> type;
+      };
       
-      typedef typename append <typename member_iterator <index - 1, false> :: type, member_type> :: type type;
+      template <bool cdummy> struct conditional <false, false, true, cdummy>
+      {
+        typedef typename arithmetic_visitor <root_type> :: type :: template shift <atype :: template __bytewise__ <index, false> :: offset()> type;
+      };
+      
+      template <bool is_arithmetic, bool is_class, bool cdummy> struct conditional <true, is_arithmetic, is_class, cdummy>
+      {
+        typedef typename repeat <sizeof(member_type) / sizeof(root_type) - 1, typename conditional <false, is_arithmetic, is_class, false> :: type> :: type type;
+      };
+      
+      typedef typename conditional <std :: is_array <member_type> :: value, std :: is_arithmetic <root_type> :: value, std :: is_class <root_type> :: value, false> :: type member_ranges;
+      
+      typedef typename append <typename member_iterator <index - 1, false> :: type, member_ranges> :: type type;
     };
     
-    typedef typename member_iterator <count <atype> :: value - 1, false> :: type type;
+    typedef typename member_iterator <((ssize_t)(count <atype> :: value)) - 1, false> :: type type;
 	};
 };
 
