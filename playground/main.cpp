@@ -5,41 +5,24 @@
 #include "data/buffer.hpp"
 #include "bytewise/arithmetic_visitor.hpp"
 
-/*class otherclass
+class asd
 {
   // Self
   
-  typedef otherclass self;
+  typedef asd self;
   
   // Members
   
-  buffer * a;
-  
-public:
-  
-  bytewise(a);
-};
-
-class myclass
-{
-  // Self
-  
-  typedef myclass self;
-  
-  // Members
-  
-  buffer a[12];
+  int a;
   int b;
-  double c[44];
-  otherclass d;
   
 public:
+  
+  // Bytewise
   
   bytewise(a);
   bytewise(b);
-  bytewise(c);
-  bytewise(d);
-};*/
+};
 
 class test
 {
@@ -53,6 +36,8 @@ class test
   int b;
   double c;
   
+  asd d;
+  
 public:
   
   // Bytewise
@@ -60,9 +45,11 @@ public:
   bytewise(a);
   bytewise(b);
   bytewise(c);
+  
+  bytewise(d);
 };
 
 int main()
 {
-  std :: cout << std :: is_same <bytewise :: arithmetic_visitor <test> :: ranges <0, 4, 4, 4, 8, 8>, bytewise :: arithmetic_visitor <test> :: type> :: value << std :: endl;
+  std :: cout << std :: is_same <bytewise :: ranges <0, 4, 4, 4, 8, 8, 16, 4, 20, 4>, bytewise :: arithmetic_visitor <test> :: type> :: value << std :: endl;
 }

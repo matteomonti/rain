@@ -43,6 +43,8 @@
 		F0A59B4A1E0EBB9E00F55395 /* count.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = count.hpp; path = bytewise/count.hpp; sourceTree = "<group>"; };
 		F0A59B4B1E0EF17F00F55395 /* arithmetic_visitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = arithmetic_visitor.h; path = bytewise/arithmetic_visitor.h; sourceTree = "<group>"; };
 		F0A59B4C1E0EF17F00F55395 /* arithmetic_visitor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = arithmetic_visitor.hpp; path = bytewise/arithmetic_visitor.hpp; sourceTree = "<group>"; };
+		F0A59B4D1E0F4F2000F55395 /* ranges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ranges.h; path = bytewise/ranges.h; sourceTree = "<group>"; };
+		F0A59B4E1E0F4F2000F55395 /* ranges.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ranges.hpp; path = bytewise/ranges.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,8 @@
 				F0A59B4A1E0EBB9E00F55395 /* count.hpp */,
 				F0A59B461E0EBB5600F55395 /* valid.h */,
 				F0A59B471E0EBB5600F55395 /* valid.hpp */,
+				F0A59B4D1E0F4F2000F55395 /* ranges.h */,
+				F0A59B4E1E0F4F2000F55395 /* ranges.hpp */,
 				F0A59B4B1E0EF17F00F55395 /* arithmetic_visitor.h */,
 				F0A59B4C1E0EF17F00F55395 /* arithmetic_visitor.hpp */,
 				F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */,
