@@ -64,7 +64,19 @@ namespace bytewise
       
       template <bool is_arithmetic, bool is_class, bool cdummy> struct conditional <true, is_arithmetic, is_class, cdummy>
       {
-        typedef typename repeat <sizeof(member_type) / sizeof(root_type) - 1, typename conditional <false, is_arithmetic, is_class, false> :: type> :: type type;
+        template <bool, bool> struct conditional_shortcut;
+        
+        template <bool sdummy> struct conditional_shortcut <true, sdummy>
+        {
+          typedef ranges <atype :: template __bytewise__ <index, false> :: offset(), sizeof(member_type)> type;
+        };
+        
+        template <bool sdummy> struct conditional_shortcut <false, sdummy>
+        {
+          typedef typename repeat <sizeof(member_type) / sizeof(root_type) - 1, typename conditional <false, is_arithmetic, is_class, false> :: type> :: type type;
+        };
+        
+        typedef typename conditional_shortcut <is_arithmetic && sizeof(root_type) == 1, false> :: type type;
       };
       
       typedef typename conditional <std :: is_array <member_type> :: value, std :: is_arithmetic <root_type> :: value, std :: is_class <root_type> :: value, false> :: type member_ranges;

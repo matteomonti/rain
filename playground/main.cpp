@@ -29,24 +29,6 @@ template <size_t ... values> void print(bytewise :: ranges <values...>)
   printer <values...> :: print();
 }
 
-class myotherclass
-{
-  // Self
-  
-  typedef myotherclass self;
-  
-  // Members
-  
-  int a;
-  int b[3];
-  
-public:
-  
-  // Bytewise
-  
-  bytewise(b);
-};
-
 class myclass
 {
   // Self
@@ -55,7 +37,7 @@ class myclass
   
   // Members
   
-  myotherclass a[2];
+  char a[4096];
   
 public:
   
