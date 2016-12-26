@@ -1,9 +1,8 @@
 #include <iostream>
 
-#include "bytewise/macro.hpp"
-#include "bytewise/valid.hpp"
-#include "data/buffer.hpp"
-#include "bytewise/arithmetic_visitor.hpp"
+#include "bytewise/sort.hpp"
+
+using namespace bytewise;
 
 template <size_t ...> struct printer;
 
@@ -29,24 +28,7 @@ template <size_t ... values> void print(bytewise :: ranges <values...>)
   printer <values...> :: print();
 }
 
-class myclass
-{
-  // Self
-  
-  typedef myclass self;
-  
-  // Members
-  
-  char a[4096];
-  
-public:
-  
-  // Bytewise
-  
-  bytewise(a);
-};
-
 int main()
 {
-  print(bytewise :: arithmetic_visitor <myclass> :: type {});
+  print(sort <ranges <7, 1007, 2, 1002, 6, 1006, 1, 1001, 5, 1005, 0, 1000, 8, 1008, 3, 1003, 4, 1004>> :: type {});
 }
