@@ -1,34 +1,35 @@
 #include <iostream>
 
-#include "bytewise/sort.hpp"
+#include "bytewise/range.hpp"
 
 using namespace bytewise;
 
-template <size_t ...> struct printer;
+template <typename> struct printer;
 
-template <> struct printer <>
+template <> struct printer <mask <>>
 {
   static void print()
   {
     std :: cout << std :: endl;
-  }
+  };
 };
 
-template <size_t first, size_t ... others> struct printer <first, others...>
+template <size_t first_offset, size_t first_size, bool first_swap, typename... tail> struct printer <mask <range <first_offset, first_size, first_swap>, tail...>>
 {
   static void print()
   {
-    std :: cout << first << "\t";
-    printer <others...> :: print();
-  }
+    std :: cout << "(" << first_offset << ", " << first_size << ", " << (first_swap ? "true" : "false") << ")\t";
+    
+    printer <mask <tail...>> :: print();
+  };
 };
 
-template <size_t ... values> void print(bytewise :: ranges <values...>)
+template <typename type> void print(type)
 {
-  printer <values...> :: print();
+  printer <type> :: print();
 }
 
 int main()
 {
-  print(sort <ranges <7, 1007, 2, 1002, 6, 1006, 1, 1001, 5, 1005, 0, 1000, 8, 1008, 3, 1003, 4, 1004>> :: type {});
+  print(mask <range <0, 12, false>, range <12, 3, true>> :: shift <1000> {});
 }
