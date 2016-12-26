@@ -17,8 +17,6 @@ namespace bytewise
 {
 	template <typename atype> class arithmetic_visitor
 	{
-  public:
-    
     // Service nested classes
     
     template <ssize_t, bool> struct member_iterator;
@@ -86,6 +84,10 @@ namespace bytewise
       
       typedef typename append <typename member_iterator <index - 1, false> :: type, member_ranges> :: type type;
     };
+    
+  public:
+    
+    // Static members
     
     typedef typename member_iterator <((ssize_t)(count <atype> :: value)) - 1, false> :: type type;
 	};

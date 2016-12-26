@@ -47,6 +47,8 @@
 		F0A59B4E1E0F4F2000F55395 /* range.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = range.hpp; path = bytewise/range.hpp; sourceTree = "<group>"; };
 		F0A59B4F1E1088CB00F55395 /* sort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sort.h; path = bytewise/sort.h; sourceTree = "<group>"; };
 		F0A59B501E1088CB00F55395 /* sort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = sort.hpp; path = bytewise/sort.hpp; sourceTree = "<group>"; };
+		F0A59B511E1149CB00F55395 /* compress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = compress.h; path = bytewise/compress.h; sourceTree = "<group>"; };
+		F0A59B521E1149CB00F55395 /* compress.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = compress.hpp; path = bytewise/compress.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,8 @@
 				F0A59B4E1E0F4F2000F55395 /* range.hpp */,
 				F0A59B4F1E1088CB00F55395 /* sort.h */,
 				F0A59B501E1088CB00F55395 /* sort.hpp */,
+				F0A59B511E1149CB00F55395 /* compress.h */,
+				F0A59B521E1149CB00F55395 /* compress.hpp */,
 				F0A59B4B1E0EF17F00F55395 /* arithmetic_visitor.h */,
 				F0A59B4C1E0EF17F00F55395 /* arithmetic_visitor.hpp */,
 				F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */,

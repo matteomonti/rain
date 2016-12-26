@@ -1,4 +1,6 @@
-// Forward declaration
+// Forward libraries and declaration
+
+#include <stddef.h>
 
 namespace bytewise
 {

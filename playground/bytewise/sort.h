@@ -20,8 +20,6 @@ namespace bytewise
 {
   template <typename ... ranges> class sort <mask <ranges...>>
 	{
-  public:
-    
     // Private static members
     
     static constexpr size_t cap = std :: numeric_limits <size_t> :: max();
@@ -66,6 +64,10 @@ namespace bytewise
       typedef typename minsup <previous, cap, cap, false, ranges...> :: type needle;
       typedef typename append <needle, typename iterator <index - 1, needle> :: type> :: type type;
     };
+    
+  public:
+    
+    // Static members
     
     typedef typename iterator <sizeof...(ranges), range <cap, cap, false>> :: type type;
 	};
