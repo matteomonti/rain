@@ -10,7 +10,8 @@ namespace bytewise
 
 // Includes
 
-#include "ranges.h"
+#include "range.h"
+#include "count.h"
 
 namespace bytewise
 {
@@ -24,7 +25,7 @@ namespace bytewise
     
     template <bool mdummy> struct member_iterator <-1, mdummy>
     {
-      typedef ranges <> type;
+      typedef mask <> type;
     };
     
     template <ssize_t index, bool mdummy> struct member_iterator
@@ -33,33 +34,35 @@ namespace bytewise
       
       typedef typename std :: remove_all_extents <member_type> :: type root_type;
       
+      static constexpr size_t offset = atype :: template __bytewise__ <index, false> :: offset();
+      
       template <ssize_t, typename> struct repeat;
       
-      template <size_t ... values> struct repeat <-1, ranges <values...>>
+      template <typename ... ranges> struct repeat <-1, mask <ranges...>>
       {
-        typedef ranges <> type;
+        typedef mask <> type;
       };
       
-      template <ssize_t reps, size_t ... values> struct repeat <reps, ranges <values...>>
+      template <ssize_t reps, typename ... ranges> struct repeat <reps, mask <ranges...>>
       {
-        typedef typename append <typename repeat <reps - 1, ranges <values...>> :: type, typename ranges <values...> :: template shift <sizeof(root_type) * reps>> :: type type;
+        typedef typename append <typename repeat <reps - 1, mask <ranges...>> :: type, typename mask <ranges...> :: template shift <sizeof(root_type) * reps>> :: type type;
       };
       
       template <bool, bool, bool, bool> struct conditional;
       
       template <bool, bool, bool, bool> struct conditional
       {
-        typedef ranges <> type;
+        typedef mask <> type;
       };
       
       template <bool cdummy> struct conditional <false, true, false, cdummy>
       {
-        typedef ranges <atype :: template __bytewise__ <index, false> :: offset(), sizeof(root_type)> type;
+        typedef mask <range <offset, sizeof(root_type), (sizeof(root_type) > 1)>> type;
       };
       
       template <bool cdummy> struct conditional <false, false, true, cdummy>
       {
-        typedef typename arithmetic_visitor <root_type> :: type :: template shift <atype :: template __bytewise__ <index, false> :: offset()> type;
+        typedef typename arithmetic_visitor <root_type> :: type :: template shift <offset> type;
       };
       
       template <bool is_arithmetic, bool is_class, bool cdummy> struct conditional <true, is_arithmetic, is_class, cdummy>
@@ -68,7 +71,7 @@ namespace bytewise
         
         template <bool sdummy> struct conditional_shortcut <true, sdummy>
         {
-          typedef ranges <atype :: template __bytewise__ <index, false> :: offset(), sizeof(member_type)> type;
+          typedef mask <range <offset, sizeof(member_type), false>> type;
         };
         
         template <bool sdummy> struct conditional_shortcut <false, sdummy>

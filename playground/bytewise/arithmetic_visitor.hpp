@@ -5,7 +5,8 @@
 
 // Includes
 
-#include "ranges.hpp"
+#include "range.hpp"
+#include "count.hpp"
 
 namespace bytewise
 {

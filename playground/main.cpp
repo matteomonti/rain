@@ -1,5 +1,9 @@
 #include <iostream>
 
+#include "bytewise/macro.hpp"
+#include "bytewise/valid.hpp"
+#include "data/buffer.hpp"
+#include "bytewise/arithmetic_visitor.hpp"
 #include "bytewise/sort.hpp"
 
 using namespace bytewise;
@@ -29,7 +33,48 @@ template <typename type> void print(type)
   printer <type> :: print();
 }
 
+class myotherclass
+{
+  // Self
+  
+  typedef myotherclass self;
+  
+  // Members
+  
+  int a;
+  int b[3];
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(b);
+};
+
+class myclass
+{
+  // Self
+  
+  typedef myclass self;
+  
+  // Members
+  
+  myotherclass a[2];
+  char b[1024];
+  unsigned char c[12];
+  char d;
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(d);
+  bytewise(c);
+  bytewise(b);
+  bytewise(a);
+};
+
 int main()
 {
-  print(sort <mask <range <6, 1006, true>, range <1, 1001, false>, range <3, 1003, false>, range <0, 1000, true>, range <4, 1004, true>, range <2, 1002, true>, range <5, 1005, false>>> :: type {});
+  print(typename sort <arithmetic_visitor <myclass> :: type> :: type {});
 }
