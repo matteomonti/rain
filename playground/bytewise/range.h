@@ -40,6 +40,16 @@ namespace bytewise
   {
     typedef mask <left_values..., right_values...> type;
   };
+  
+  template <typename ... left_values, typename right_range> struct append <mask <left_values...>, right_range>
+  {
+    typedef mask <left_values..., right_range> type;
+  };
+  
+  template <typename left_range, typename ... right_values> struct append <left_range, mask <right_values...>>
+  {
+    typedef mask <left_range, right_values...> type;
+  };
 };
 
 #endif

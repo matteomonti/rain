@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "bytewise/range.hpp"
+#include "bytewise/sort.hpp"
 
 using namespace bytewise;
 
@@ -31,5 +31,5 @@ template <typename type> void print(type)
 
 int main()
 {
-  print(mask <range <0, 12, false>, range <12, 3, true>> :: shift <1000> {});
+  print(sort <mask <range <6, 1006, true>, range <1, 1001, false>, range <3, 1003, false>, range <0, 1000, true>, range <4, 1004, true>, range <2, 1002, true>, range <5, 1005, false>>> :: type {});
 }

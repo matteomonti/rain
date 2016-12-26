@@ -5,7 +5,7 @@
 
 // Includes
 
-#include "ranges.hpp"
+#include "range.hpp"
 
 namespace bytewise
 {

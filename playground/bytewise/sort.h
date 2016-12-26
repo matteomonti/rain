@@ -14,11 +14,11 @@ namespace bytewise
 
 // Includes
 
-#include "ranges.h"
+#include "range.h"
 
 namespace bytewise
 {
-  template <size_t ... values> class sort <ranges <values...>>
+  template <typename ... ranges> class sort <mask <ranges...>>
 	{
   public:
     
@@ -28,42 +28,46 @@ namespace bytewise
     
     // Service nested classes
     
-    template <typename, size_t, size_t, size_t ...> struct minsup;
+    template <typename, size_t, size_t, bool, typename ...> struct minsup;
     
-    template <size_t min, size_t dummy, size_t offset, size_t size> struct minsup <ranges <min, dummy>, offset, size>
+    template <size_t min, size_t size_dummy, size_t swap_dummy, size_t offset, size_t size, bool swap> struct minsup <range <min, size_dummy, swap_dummy>, offset, size, swap>
     {
-      typedef ranges <offset, size> type;
+      typedef range <offset, size, swap> type;
     };
     
-    template <size_t min, size_t dummy, size_t offset, size_t size, size_t foffset, size_t fsize, size_t ... tail> struct minsup <ranges <min, dummy>, offset, size, foffset, fsize, tail...>
+    template <size_t min, size_t size_dummy, bool swap_dummy, size_t offset, size_t size, bool swap, size_t foffset, size_t fsize, bool fswap, typename ... tail> struct minsup <range <min, size_dummy, swap_dummy>, offset, size, swap, range <foffset, fsize, fswap>, tail...>
     {
-      typedef typename minsup <ranges <min, dummy>, (foffset > min && foffset < offset) ? foffset : offset, (foffset > min && foffset < offset) ? fsize : size, tail...> :: type type;
+      static constexpr bool replace = foffset > min && foffset < offset;
+      
+      typedef typename minsup <range <min, size_dummy, swap_dummy>, replace ? foffset : offset, replace ? fsize : size, replace ? fswap : swap, tail...> :: type type;
     };
     
-    template <size_t offset, size_t size> struct minsup <ranges <>, offset, size>
+    template <size_t offset, size_t size, bool swap> struct minsup <range <cap, cap, false>, offset, size, swap>
     {
-      typedef ranges <offset, size> type;
+      typedef range <offset, size, swap> type;
     };
     
-    template <size_t offset, size_t size, size_t foffset, size_t fsize, size_t ... tail> struct minsup <ranges <>, offset, size, foffset, fsize, tail...>
+    template <size_t offset, size_t size, bool swap, size_t foffset, size_t fsize, bool fswap, typename ... tail> struct minsup <range <cap, cap, false>, offset, size, swap, range <foffset, fsize, fswap>, tail...>
     {
-      typedef typename minsup <ranges <>, (foffset < offset) ? foffset : offset, (foffset < offset) ? fsize : size, tail...> :: type type;
+      static constexpr bool replace = foffset < offset;
+      
+      typedef typename minsup <range <cap, cap, false>, replace ? foffset : offset, replace ? fsize : size, replace ? fswap : swap, tail...> :: type type;
     };
     
-    template <ssize_t, typename> struct iterator;
+    template <size_t, typename> struct iterator;
     
-    template <typename previous> struct iterator <-1, previous>
+    template <typename previous> struct iterator <0, previous>
     {
-      typedef ranges <> type;
+      typedef mask <> type;
     };
     
-    template <ssize_t index, typename previous> struct iterator
+    template <size_t index, typename previous> struct iterator
     {
-      typedef typename minsup <previous, cap, cap, values...> :: type needle;
+      typedef typename minsup <previous, cap, cap, false, ranges...> :: type needle;
       typedef typename append <needle, typename iterator <index - 1, needle> :: type> :: type type;
     };
     
-    typedef typename iterator <((ssize_t)(sizeof...(values) / 2)) - 1, ranges <>> :: type type;
+    typedef typename iterator <sizeof...(ranges), range <cap, cap, false>> :: type type;
 	};
 };
 
