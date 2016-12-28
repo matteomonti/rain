@@ -1,6 +1,9 @@
-#include "bytewise/compress.hpp"
-
 #include <iostream>
+
+#include "bytewise/macro.hpp"
+#include "bytewise/valid.hpp"
+#include "data/buffer.hpp"
+#include "bytewise/arithmetic_visitor.hpp"
 
 using namespace bytewise;
 
@@ -29,7 +32,44 @@ template <typename type> void print(type)
   printer <type> :: print();
 }
 
+class myotherclass
+{
+  // Self
+  
+  typedef myotherclass self;
+  
+  // Members
+  
+  int a;
+  int b[3];
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(b);
+};
+
+class myclass
+{
+  // Self
+  
+  typedef myclass self;
+  
+  // Members
+  
+  myotherclass a[2];
+  char b[44];
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(a);
+  bytewise(b);
+};
+
 int main()
 {
-  print(bytewise :: compress <mask <range <0, 4, false>, range <5, 4, false>, range <9, 3, true>, range <12, 4, false>, range <16, 4, false>>> :: type {});
+  print(bytewise :: arithmetic_visitor <myclass> :: type {});
 }

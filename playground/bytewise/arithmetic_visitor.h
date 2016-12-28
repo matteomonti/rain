@@ -12,6 +12,7 @@ namespace bytewise
 
 #include "range.h"
 #include "count.h"
+#include "endianess.h"
 
 namespace bytewise
 {
@@ -55,7 +56,7 @@ namespace bytewise
       
       template <bool cdummy> struct conditional <false, true, false, cdummy>
       {
-        typedef mask <range <offset, sizeof(root_type), (sizeof(root_type) > 1)>> type;
+        typedef mask <range <offset, sizeof(root_type), (endianess :: swap && sizeof(root_type) > 1)>> type;
       };
       
       template <bool cdummy> struct conditional <false, false, true, cdummy>

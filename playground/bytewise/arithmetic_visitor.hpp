@@ -7,6 +7,7 @@
 
 #include "range.hpp"
 #include "count.hpp"
+#include "endianess.hpp"
 
 namespace bytewise
 {
