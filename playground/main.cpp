@@ -3,7 +3,8 @@
 #include "bytewise/macro.hpp"
 #include "bytewise/valid.hpp"
 #include "data/buffer.hpp"
-#include "bytewise/arithmetic_visitor.hpp"
+#include "bytewise/arithmetic_scanner.hpp"
+#include "bytewise/compress.hpp"
 
 using namespace bytewise;
 
@@ -71,5 +72,5 @@ public:
 
 int main()
 {
-  print(bytewise :: arithmetic_visitor <myclass> :: type {});
+  print(bytewise :: compress <bytewise :: arithmetic_scanner <myclass> :: type> :: type {});
 }

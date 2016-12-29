@@ -2,11 +2,11 @@
 
 namespace bytewise
 {
-	template <typename> class arithmetic_visitor;
+	template <typename> class arithmetic_scanner;
 };
 
-#if !defined(__forward__) && !defined(__playground__bytewise__arithmetic_visitor__h)
-#define __playground__bytewise__arithmetic_visitor__h
+#if !defined(__forward__) && !defined(__playground__bytewise__arithmetic_scanner__h)
+#define __playground__bytewise__arithmetic_scanner__h
 
 // Includes
 
@@ -16,7 +16,7 @@ namespace bytewise
 
 namespace bytewise
 {
-	template <typename atype> class arithmetic_visitor
+	template <typename atype> class arithmetic_scanner
 	{
     // Service nested classes
     
@@ -61,7 +61,7 @@ namespace bytewise
       
       template <bool cdummy> struct conditional <false, false, true, cdummy>
       {
-        typedef typename arithmetic_visitor <root_type> :: type :: template shift <offset> type;
+        typedef typename arithmetic_scanner <root_type> :: type :: template shift <offset> type;
       };
       
       template <bool is_arithmetic, bool is_class, bool cdummy> struct conditional <true, is_arithmetic, is_class, cdummy>
