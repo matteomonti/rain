@@ -19,7 +19,7 @@ namespace bytewise
 
 namespace bytewise
 {
-	template <typename visitor, typename target> class arithmetic_visitor
+	template <typename visitor_type, typename target_type> class arithmetic_visitor
 	{
   public:
     
@@ -34,10 +34,46 @@ namespace bytewise
         template <typename type> static uint8_t sfinae(...);
         template <typename type> static uint32_t sfinae(helper <type, &type :: arithmetic> *);
         
-        static constexpr bool value = std :: is_same <uint32_t, decltype(sfinae <visitor> (0))> :: value;
+        static constexpr bool value = std :: is_same <uint32_t, decltype(sfinae <visitor_type> (0))> :: value;
       };
       
       static constexpr bool value = const_conditional <size, true> :: value || (!mutable_reference && const_conditional <size, false> :: value);
+    };
+    
+    template <size_t offset, size_t size> union selector
+    {
+      target_type item;
+      
+      #pragma pack(push, 1)
+      struct mask_type
+      {
+        char head[offset];
+        char body[size];
+        char tail[sizeof(target_type) - offset - size];
+      };
+      #pragma pack(pop)
+      
+      mask_type mask;
+    };
+    
+    template <typename, bool> struct iterator;
+    
+    template <bool dummy> struct iterator <mask <>, dummy>
+    {
+      static inline void run(visitor_type &, target_type &);
+      static inline void run(visitor_type &, const target_type &);
+    };
+    
+    template <size_t offset, size_t size, typename... tail, bool dummy> struct iterator <mask <range <offset, size, true>, tail...>, dummy>
+    {
+      static inline void run(visitor_type &, target_type &);
+      static inline void run(visitor_type &, const target_type &);
+    };
+    
+    template <size_t offset, size_t size, typename... tail, bool dummy> struct iterator <mask <range <offset, size, false>, tail...>, dummy>
+    {
+      static inline void run(visitor_type &, target_type &);
+      static inline void run(visitor_type &, const target_type &);
     };
   };
 };
