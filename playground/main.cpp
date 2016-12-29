@@ -1,37 +1,9 @@
 #include <iostream>
 
 #include "bytewise/macro.hpp"
-#include "bytewise/valid.hpp"
-#include "data/buffer.hpp"
-#include "bytewise/arithmetic_scanner.hpp"
-#include "bytewise/compress.hpp"
+#include "bytewise/arithmetic_visitor.hpp"
 
 using namespace bytewise;
-
-template <typename> struct printer;
-
-template <> struct printer <mask <>>
-{
-  static void print()
-  {
-    std :: cout << std :: endl;
-  };
-};
-
-template <size_t first_offset, size_t first_size, bool first_swap, typename... tail> struct printer <mask <range <first_offset, first_size, first_swap>, tail...>>
-{
-  static void print()
-  {
-    std :: cout << "(" << first_offset << ", " << first_size << ", " << (first_swap ? "true" : "false") << ")\t";
-    
-    printer <mask <tail...>> :: print();
-  };
-};
-
-template <typename type> void print(type)
-{
-  printer <type> :: print();
-}
 
 class myotherclass
 {
@@ -70,7 +42,17 @@ public:
   bytewise(b);
 };
 
+class myvisitor
+{
+public:
+  
+  template <size_t size> void arithmetic(const char (&block) [size])
+  {
+  }
+};
+
+
 int main()
 {
-  print(bytewise :: compress <bytewise :: arithmetic_scanner <myclass> :: type> :: type {});
+  std :: cout << bytewise :: arithmetic_visitor <myvisitor, myclass> :: valid <3, false> :: value << std :: endl;
 }
