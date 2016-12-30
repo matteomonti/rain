@@ -5,7 +5,7 @@
 
 using namespace bytewise;
 
-class myotherclass
+/*class myotherclass
 {
   // Self
   
@@ -40,23 +40,48 @@ public:
   
   bytewise(a);
   bytewise(b);
+};*/
+
+class myclass
+{
+  // Self
+  
+  typedef myclass self;
+  
+  // Members
+  
+  int a;
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(a);
+  
+  // Constructors
+  
+  myclass(int _a) : a(_a)
+  {
+  }
 };
 
 class myvisitor
 {
 public:
   
-  template <size_t size> void arithmetic(const char (&block) [size])
+  template <size_t size> void arithmetic(const arithmetic <size, true, false> & item)
   {
+    for(size_t i = 0; i < size; i++)
+      std :: cout << (unsigned int) (unsigned char) item[i] << "\t";
+    
+    std :: cout << std :: endl;
   }
 };
 
-void f(bytewise :: arithmetic <3, false, false> &)
-{
-}
-
 int main()
 {
-  char x[3];
-  f((bytewise :: arithmetic <3, false, false> &) x);
+  myvisitor visitor;
+  myclass target(55);
+  
+  arithmetic_visitor <myvisitor, myclass> :: visit(visitor, target);
 }

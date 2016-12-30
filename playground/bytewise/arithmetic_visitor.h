@@ -26,11 +26,11 @@ namespace bytewise
     
     // Service nested classes
     
-    template <size_t size, bool mutable_reference> struct valid
+    template <size_t size, bool const_reference> struct valid
     {
-      template <size_t csize, bool cmutable_reference, bool read, bool write> struct const_conditional
+      template <size_t csize, bool cconst_reference, bool read, bool write> struct const_conditional
       {
-        template <typename type, void (type :: *) (typename std :: conditional <cmutable_reference, arithmetic <csize, read, write> &, const arithmetic <csize, read, write> &> :: type)> class helper;
+        template <typename type, void (type :: *) (typename std :: conditional <cconst_reference, const arithmetic <csize, read, write> &, arithmetic <csize, read, write> &> :: type)> class helper;
         
         template <typename type> static uint8_t sfinae(...);
         template <typename type> static uint32_t sfinae(helper <type, &type :: arithmetic> *);
@@ -40,7 +40,7 @@ namespace bytewise
       
       template <bool read, bool write> struct available
       {
-        static constexpr unsigned int value = const_conditional <size, true, read, write> :: value || (!mutable_reference && const_conditional <size, false, read, write> :: value);
+        static constexpr unsigned int value = const_reference ? (const_conditional <size, true, read, write> :: value && !write) : (const_conditional <size, false, read, write> :: value || (const_conditional <size, true, read, write> :: value && !write));
       };
       
       static constexpr unsigned int count = available <false, false> :: value + available <false, true> :: value + available <true, false> :: value + available <true, true> :: value;
@@ -99,6 +99,11 @@ namespace bytewise
       static inline void run(visitor_type &, target_type &);
       static inline void run(visitor_type &, const target_type &);
     };
+    
+    // Static methods
+    
+    static inline void visit(visitor_type &, target_type &);
+    static inline void visit(visitor_type &, const target_type &);
   };
 };
 

@@ -38,18 +38,15 @@ namespace bytewise
   
   template <typename visitor_type, typename target_type> template <size_t offset, size_t size, typename... tail, bool dummy> inline void arithmetic_visitor <visitor_type, target_type> :: iterator <mask <range <offset, size, true>, tail...>, dummy> :: run(visitor_type & visitor, target_type & target)
   {
-    static_assert(valid <size, true> :: value, "Visitor does not offer proper arithmetic method.");
+    static_assert(valid <size, false> :: value, "Visitor does not offer proper arithmetic method.");
     
     char buffer[size];
     
-    static constexpr bool read = valid <size, true> :: read;
-    static constexpr bool write = valid <size, true> :: write;
+    conditional <valid <size, false> :: read, false> :: swap(((selector <offset, size> &) target).mask.body, buffer);
     
-    conditional <read, false> :: swap(((selector <offset, size> &) target).mask.body, buffer);
+    visitor.arithmetic((arithmetic <size, valid <size, false> :: read, valid <size, false> :: write> &) buffer);
     
-    visitor.arithmetic(buffer);
-    
-    conditional <write, false> :: swap(buffer, ((selector <offset, size> &) target).mask.body);
+    conditional <valid <size, false> :: write, false> :: swap(buffer, ((selector <offset, size> &) target).mask.body);
     
     iterator <mask <tail...>, false> :: run(visitor, target);
   }
@@ -60,14 +57,9 @@ namespace bytewise
     
     char buffer[size];
     
-    static constexpr bool read = valid <size, true> :: read;
-    static constexpr bool write = valid <size, true> :: write;
+    conditional <valid <size, true> :: read, false> :: swap(((const selector <offset, size> &) target).mask.body, buffer);
     
-    static_assert(!write, "Visitor needs to write on const target.");
-    
-    conditional <read, false> :: swap(((const selector <offset, size> &) target).mask.body, buffer);
-    
-    visitor.arithmetic(buffer);
+    visitor.arithmetic((const arithmetic <size, valid <size, true> :: read, valid <size, true> :: write> &) buffer);
     
     iterator <mask <tail...>, false> :: run(visitor, target);
   }
@@ -76,9 +68,9 @@ namespace bytewise
   
   template <typename visitor_type, typename target_type> template <size_t offset, size_t size, typename... tail, bool dummy> inline void arithmetic_visitor <visitor_type, target_type> :: iterator <mask <range <offset, size, false>, tail...>, dummy> :: run(visitor_type & visitor, target_type & target)
   {
-    static_assert(valid <size, true> :: value, "Visitor does not offer proper arithmetic method.");
+    static_assert(valid <size, false> :: value, "Visitor does not offer proper arithmetic method.");
     
-    visitor.arithmetic(((selector <offset, size> &) target).mask.body);
+    visitor.arithmetic((arithmetic <size, valid <size, false> :: read, valid <size, false> :: write> &)(((selector <offset, size> &) target).mask.body));
     iterator <mask <tail...>, false> :: run(visitor, target);
   }
   
@@ -86,11 +78,21 @@ namespace bytewise
   {
     static_assert(valid <size, true> :: value, "Visitor does not offer proper arithmetic method.");
 
-    static_assert(!(valid <size, true> :: write), "Visitor needs to write on const target.");
-    
-    visitor.arithmetic(((const selector <offset, size> &) target).mask.body);
+    visitor.arithmetic((const arithmetic <size, valid <size, true> :: read, valid <size, true> :: write> &)(((const selector <offset, size> &) target).mask.body));
     
     iterator <mask <tail...>, false> :: run(visitor, target);
+  }
+  
+  // Static methods
+  
+  template <typename visitor_type, typename target_type> void arithmetic_visitor <visitor_type, target_type> :: visit(visitor_type & visitor, target_type & target)
+  {
+    iterator <typename compress <typename arithmetic_scanner <target_type> :: type> :: type, false> :: run(visitor, target);
+  }
+  
+  template <typename visitor_type, typename target_type> void arithmetic_visitor <visitor_type, target_type> :: visit(visitor_type & visitor, const target_type & target)
+  {
+    iterator <typename compress <typename arithmetic_scanner <target_type> :: type> :: type, false> :: run(visitor, target);
   }
 };
 
