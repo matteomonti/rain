@@ -51,15 +51,12 @@ public:
   }
 };
 
-void f(char (&x) [3])
+void f(bytewise :: arithmetic <3, false, false> &)
 {
 }
 
 int main()
 {
-  myclass x;
-  
-  f(((bytewise :: arithmetic_visitor <myvisitor, myclass> :: selector <4, 3> &) x).mask.body);
-  
-  // std :: cout << bytewise :: arithmetic_visitor <myvisitor, myclass> :: valid <3, false> :: value << std :: endl;
+  char x[3];
+  f((bytewise :: arithmetic <3, false, false> &) x);
 }

@@ -16,6 +16,7 @@ namespace bytewise
 
 #include "arithmetic_scanner.h"
 #include "compress.h"
+#include "arithmetic.h"
 
 namespace bytewise
 {
@@ -27,9 +28,9 @@ namespace bytewise
     
     template <size_t size, bool mutable_reference> struct valid
     {
-      template <size_t csize, bool cmutable_reference> struct const_conditional
+      template <size_t csize, bool cmutable_reference, bool read, bool write> struct const_conditional
       {
-        template <typename type, void (type :: *) (typename std :: conditional <cmutable_reference, char (&)[csize], const char (&)[csize]> :: type)> class helper;
+        template <typename type, void (type :: *) (typename std :: conditional <cmutable_reference, arithmetic <csize, read, write> &, const arithmetic <csize, read, write> &> :: type)> class helper;
         
         template <typename type> static uint8_t sfinae(...);
         template <typename type> static uint32_t sfinae(helper <type, &type :: arithmetic> *);
@@ -37,7 +38,18 @@ namespace bytewise
         static constexpr bool value = std :: is_same <uint32_t, decltype(sfinae <visitor_type> (0))> :: value;
       };
       
-      static constexpr bool value = const_conditional <size, true> :: value || (!mutable_reference && const_conditional <size, false> :: value);
+      template <bool read, bool write> struct available
+      {
+        static constexpr unsigned int value = const_conditional <size, true, read, write> :: value || (!mutable_reference && const_conditional <size, false, read, write> :: value);
+      };
+      
+      static constexpr unsigned int count = available <false, false> :: value + available <false, true> :: value + available <true, false> :: value + available <true, true> :: value;
+      
+      static constexpr bool value = (count == 1);
+      
+      static constexpr bool read = available <true, false> :: value + available <true, true> :: value;
+      
+      static constexpr bool write = available <false, true> :: value + available <true, true> :: value;
     };
     
     template <size_t offset, size_t size> union selector
@@ -54,6 +66,18 @@ namespace bytewise
       #pragma pack(pop)
       
       mask_type mask;
+    };
+    
+    template <bool, bool> struct conditional;
+    
+    template <bool dummy> struct conditional <true, dummy>
+    {
+      template <size_t size> static inline void swap(const char (&) [size], char (&) [size]);
+    };
+    
+    template <bool dummy> struct conditional <false, dummy>
+    {
+      template <size_t size> static inline void swap(const char (&) [size], char (&) [size]);
     };
     
     template <typename, bool> struct iterator;
