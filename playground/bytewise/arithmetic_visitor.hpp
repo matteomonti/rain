@@ -15,7 +15,7 @@ namespace bytewise
   
   template <typename visitor_type, typename target_type> template <bool dummy> template <size_t size> void arithmetic_visitor <visitor_type, target_type> :: conditional <true, dummy> :: swap(const char (&source) [size], char (&destination)[size])
   {
-    swab(source, destination, size);
+    endianess :: swap(source, destination);
   }
   
   // conditional <false>

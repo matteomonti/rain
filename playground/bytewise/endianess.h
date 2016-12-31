@@ -111,7 +111,11 @@ namespace bytewise
     static constexpr type local = __playground__bytewise__endianess__endianess;
     static constexpr type network = big;
     
-    static constexpr bool swap = (local != network);
+    static constexpr bool foreign = (local != network);
+    
+    // Static methods
+    
+    template <size_t size> static inline void swap(const char (&) [size], char (&) [size]);
 	};
 };
 
