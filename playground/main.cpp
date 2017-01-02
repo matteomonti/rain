@@ -55,5 +55,5 @@ template <typename... ps> void print_map(map <ps...>)
 
 int main()
 {
-  print_map(map <path <1, 2, 3>, path <4, 5, 6>, path <7, 8, 9>> :: append <map <path <10, 11, 12>>> :: type {});
+  print_map(map <path <1, 2, 3>, path <4, 5, 6>, path <7, 8, 9>> :: append <map <path <10, 11, 12>>> :: type :: prepend <13> :: type{});
 }
