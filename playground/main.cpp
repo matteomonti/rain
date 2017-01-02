@@ -2,7 +2,8 @@
 
 #include "bytewise/macro.hpp"
 #include "bytewise/arithmetic_visitor.hpp"
-#include "bytewise/path.hpp"
+#include "bytewise/buffer_scanner.hpp"
+#include "data/buffer.hpp"
 
 using namespace bytewise;
 
@@ -53,7 +54,49 @@ template <typename... ps> void print_map(map <ps...>)
   map_iterator <ps...> :: run();
 }
 
+class myotherclass
+{
+  // Self
+  
+  typedef myotherclass self;
+  
+  // Members
+  
+  int a;
+  buffer b[12];
+  buffer c;
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(a);
+  bytewise(b);
+  bytewise(c);
+};
+
+class myclass
+{
+  // Self
+  
+  typedef myclass self;
+  
+  // Members
+  
+  int a;
+  buffer b;
+  myotherclass c;
+  
+public:
+  
+  // Bytewise
+  
+  bytewise(a);
+  bytewise(b);
+  bytewise(c);
+};
+
 int main()
 {
-  print_map(map <path <1, 2, 3>, path <4, 5, 6>, path <7, 8, 9>> :: append <map <path <10, 11, 12>>> :: type :: prepend <13> :: type{});
+  print_map(buffer_scanner <myclass> :: type {});
 }
