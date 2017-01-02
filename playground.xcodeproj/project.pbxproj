@@ -29,6 +29,10 @@
 		F078E7A91E156611003D4AE0 /* arithmetic_visitor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = arithmetic_visitor.hpp; path = bytewise/arithmetic_visitor.hpp; sourceTree = "<group>"; };
 		F078E7AA1E15845C003D4AE0 /* arithmetic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = arithmetic.h; path = bytewise/arithmetic.h; sourceTree = "<group>"; };
 		F078E7AB1E15845C003D4AE0 /* arithmetic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = arithmetic.hpp; path = bytewise/arithmetic.hpp; sourceTree = "<group>"; };
+		F078E7AC1E195EB9003D4AE0 /* path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = path.h; path = bytewise/path.h; sourceTree = "<group>"; };
+		F078E7AD1E195EB9003D4AE0 /* path.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = path.hpp; path = bytewise/path.hpp; sourceTree = "<group>"; };
+		F078E7AE1E196005003D4AE0 /* buffer_scanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = buffer_scanner.h; path = bytewise/buffer_scanner.h; sourceTree = "<group>"; };
+		F078E7AF1E196005003D4AE0 /* buffer_scanner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = buffer_scanner.hpp; path = bytewise/buffer_scanner.hpp; sourceTree = "<group>"; };
 		F0A59B251E0DB70C00F55395 /* playground */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = playground; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0A59B281E0DB70C00F55395 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F0A59B301E0DBD7300F55395 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = buffer.cpp; path = data/buffer.cpp; sourceTree = "<group>"; };
@@ -137,6 +141,10 @@
 				F078E7AB1E15845C003D4AE0 /* arithmetic.hpp */,
 				F078E7A81E156611003D4AE0 /* arithmetic_visitor.h */,
 				F078E7A91E156611003D4AE0 /* arithmetic_visitor.hpp */,
+				F078E7AC1E195EB9003D4AE0 /* path.h */,
+				F078E7AD1E195EB9003D4AE0 /* path.hpp */,
+				F078E7AE1E196005003D4AE0 /* buffer_scanner.h */,
+				F078E7AF1E196005003D4AE0 /* buffer_scanner.hpp */,
 				F0A59B421E0EBA7F00F55395 /* buffer_visitor.h */,
 				F0A59B431E0EBA7F00F55395 /* buffer_visitor.hpp */,
 				F0A59B411E0EBA7F00F55395 /* buffer_visitor.cpp */,
