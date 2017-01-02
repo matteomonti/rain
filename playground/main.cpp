@@ -3,6 +3,7 @@
 #include "bytewise/macro.hpp"
 #include "bytewise/arithmetic_visitor.hpp"
 #include "bytewise/buffer_scanner.hpp"
+#include "bytewise/buffer_visitor.hpp"
 #include "data/buffer.hpp"
 
 using namespace bytewise;
@@ -96,7 +97,14 @@ public:
   bytewise(c);
 };
 
+class myvisitor
+{
+public:
+  
+  template <bool multiple> void buffer(:: buffer &);
+};
+
 int main()
 {
-  print_map(buffer_scanner <myclass> :: type {});
+  std :: cout << buffer_visitor <myvisitor, myclass> :: valid <true, true> :: value << std :: endl;
 }

@@ -18,7 +18,8 @@
                                                                     \
 progressive(__bytewise__, name)                                     \
 {                                                                   \
-  friend class :: bytewise :: buffer_visitor;                       \
+  template <typename, typename> friend class :: bytewise            \
+      :: buffer_visitor;                                            \
                                                                     \
   typedef decltype(self :: name) type;                              \
                                                                     \
