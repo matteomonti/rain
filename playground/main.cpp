@@ -67,7 +67,7 @@ public:
   
   int a;
   buffer b;
-  buffer c;
+  buffer c[2];
   
   // Bytewise
   
@@ -87,7 +87,7 @@ public:
   // Members
   
   int a;
-  buffer b;
+  buffer b[3];
   myotherclass c;
   
   // Bytewise
@@ -112,9 +112,12 @@ int main()
   myvisitor visitor;
   myclass object;
   
-  object.b = "Il primo funziona!";
-  object.c.b = "Il secondo funziona!";
-  object.c.c = "Il terzo funziona!";
+  object.b[0] = "Il primo funziona!";
+  object.b[1] = "Il secondo funziona!";
+  object.b[2] = "Il terzo funziona!";
+  object.c.b = "Il quarto funziona!";
+  object.c.c[0] = "Il quinto funziona!";
+  object.c.c[1] = "Il sesto funziona!";
   
   buffer_visitor <myvisitor, myclass> :: visit(visitor, (const myclass &) object);
 }

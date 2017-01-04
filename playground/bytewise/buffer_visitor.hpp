@@ -5,16 +5,56 @@
 
 namespace bytewise
 {
-  // path_iterator <path <>, multiple>
+  // array_iterator <false, index, dummy>
   
-  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: path_iterator <path <>, multiple> :: run(visitor_type & visitor, type & target)
+  template <typename visitor_type, typename target_type> template <ssize_t index, bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <false, index, multiple> :: run(visitor_type & visitor, type & target)
   {
     visitor.template buffer <multiple> (target);
   }
   
-  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: path_iterator <path <>, multiple> :: run(visitor_type & visitor, const type & target)
+  template <typename visitor_type, typename target_type> template <ssize_t index, bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <false, index, multiple> :: run(visitor_type & visitor, const type & target)
   {
     visitor.template buffer <multiple> (target);
+  }
+  
+  // array_iterator <true, -1, dummy>
+  
+  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <true, -1, multiple> :: run(visitor_type & visitor, type & target)
+  {
+  }
+  
+  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <true, -1, multiple> :: run(visitor_type & visitor, const type & target)
+  {
+  }
+  
+  // array_iterator <true, index, dummy>
+  
+  template <typename visitor_type, typename target_type> template <ssize_t index, bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <true, index, multiple> :: run(visitor_type & visitor, type & target)
+  {
+    array_iterator <true, index - 1, multiple> :: run(visitor, target);
+    visitor.template buffer <multiple> (target[index]);
+  }
+  
+  template <typename visitor_type, typename target_type> template <ssize_t index, bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: array_iterator <true, index, multiple> :: run(visitor_type & visitor, const type & target)
+  {
+    array_iterator <true, index - 1, multiple> :: run(visitor, target);
+    visitor.template buffer <multiple> (target[index]);
+  }
+  
+  // path_iterator <path <>, multiple>
+  
+  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: path_iterator <path <>, multiple> :: run(visitor_type & visitor, type & target)
+  {
+    typedef typename std :: remove_all_extents <type> :: type root_type;
+    
+    array_iterator <std :: is_array <type> :: value, ((ssize_t)(sizeof(type) / sizeof(root_type))) - 1, multiple> :: run(visitor, target);
+  }
+  
+  template <typename visitor_type, typename target_type> template <bool multiple> template <typename type> inline void buffer_visitor <visitor_type, target_type> :: path_iterator <path <>, multiple> :: run(visitor_type & visitor, const type & target)
+  {
+    typedef typename std :: remove_all_extents <type> :: type root_type;
+    
+    array_iterator <std :: is_array <type> :: value, ((ssize_t)(sizeof(type) / sizeof(root_type))) - 1, multiple> :: run(visitor, target);
   }
   
   // path_iterator <path <index, tail...>, multiple>

@@ -47,6 +47,26 @@ namespace bytewise
       static constexpr bool value = const_conditional <const_reference, multiple> :: value || const_conditional <true, multiple> :: value;
     };
     
+    template <bool, ssize_t, bool> struct array_iterator;
+    
+    template <ssize_t index, bool multiple> struct array_iterator <false, index, multiple>
+    {
+      template <typename type> static inline void run(visitor_type &, type &);
+      template <typename type> static inline void run(visitor_type &, const type &);
+    };
+    
+    template <bool multiple> struct array_iterator <true, -1, multiple>
+    {
+      template <typename type> static inline void run(visitor_type &, type &);
+      template <typename type> static inline void run(visitor_type &, const type &);
+    };
+    
+    template <ssize_t index, bool multiple> struct array_iterator <true, index, multiple>
+    {
+      template <typename type> static inline void run(visitor_type &, type &);
+      template <typename type> static inline void run(visitor_type &, const type &);
+    };
+    
     template <typename, bool> struct path_iterator;
     
     template <bool multiple> struct path_iterator <path <>, multiple>
