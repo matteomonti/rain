@@ -19,6 +19,11 @@ namespace bytewise
 #include "../data/buffer.h"
 #undef __forward__
 
+// Includes
+
+#include "path.h"
+#include "buffer_scanner.h"
+
 namespace bytewise
 {
 	template <typename visitor_type, typename target_type> class buffer_visitor
@@ -40,6 +45,20 @@ namespace bytewise
       };
       
       static constexpr bool value = const_conditional <const_reference, multiple> :: value || const_conditional <true, multiple> :: value;
+    };
+    
+    template <typename, bool> struct path_iterator;
+    
+    template <bool multiple> struct path_iterator <path <>, multiple>
+    {
+      template <typename type> static inline void run(visitor_type &, type &);
+      template <typename type> static inline void run(visitor_type &, const type &);
+    };
+    
+    template <size_t index, size_t ... tail, bool multiple> struct path_iterator <path <index, tail...>, multiple>
+    {
+      template <typename type> static inline void run(visitor_type &, type &);
+      template <typename type> static inline void run(visitor_type &, const type &);
     };
 	};
 };

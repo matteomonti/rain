@@ -14,6 +14,10 @@ namespace bytewise
 #include "../data/buffer.h"
 #undef __forward__
 
+// Libraries
+
+#include <stdio.h>
+
 // Includes
 
 #include "path.h"

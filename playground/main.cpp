@@ -61,13 +61,13 @@ class myotherclass
   
   typedef myotherclass self;
   
+public:
+  
   // Members
   
   int a;
   buffer b[12];
   buffer c;
-  
-public:
   
   // Bytewise
   
@@ -82,13 +82,13 @@ class myclass
   
   typedef myclass self;
   
+public:
+  
   // Members
   
   int a;
   buffer b;
   myotherclass c;
-  
-public:
   
   // Bytewise
   
@@ -101,10 +101,21 @@ class myvisitor
 {
 public:
   
-  template <bool multiple> void buffer(:: buffer &);
+  template <bool multiple> void buffer(:: buffer & target)
+  {
+    std :: cout << target << std :: endl;
+    target = "Funziona!";
+  }
 };
 
 int main()
 {
-  std :: cout << buffer_visitor <myvisitor, myclass> :: valid <true, true> :: value << std :: endl;
+  myvisitor visitor;
+  myclass object;
+  
+  object.c.c = "Evviva!";
+  
+  buffer_visitor <myvisitor, myclass> :: path_iterator <path <2, 2>, true> :: run(visitor, object);
+  
+  std :: cout << object.c.c << std :: endl;
 }
