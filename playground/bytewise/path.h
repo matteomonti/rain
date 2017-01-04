@@ -19,6 +19,8 @@ namespace bytewise
   {
   public:
     
+    static constexpr size_t size = sizeof...(paths);
+    
     template <typename> struct append;
     
     template <typename... apaths> struct append <map <apaths...>>

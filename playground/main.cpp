@@ -66,7 +66,7 @@ public:
   // Members
   
   int a;
-  buffer b[12];
+  buffer b;
   buffer c;
   
   // Bytewise
@@ -101,10 +101,9 @@ class myvisitor
 {
 public:
   
-  template <bool multiple> void buffer(:: buffer & target)
+  template <bool multiple> void buffer(const :: buffer & target)
   {
-    std :: cout << target << std :: endl;
-    target = "Funziona!";
+    std :: cout << "(multiple: " << multiple << ") " << target << std :: endl;
   }
 };
 
@@ -113,9 +112,9 @@ int main()
   myvisitor visitor;
   myclass object;
   
-  object.c.c = "Evviva!";
+  object.b = "Il primo funziona!";
+  object.c.b = "Il secondo funziona!";
+  object.c.c = "Il terzo funziona!";
   
-  buffer_visitor <myvisitor, myclass> :: path_iterator <path <2, 2>, true> :: run(visitor, object);
-  
-  std :: cout << object.c.c << std :: endl;
+  buffer_visitor <myvisitor, myclass> :: visit(visitor, (const myclass &) object);
 }

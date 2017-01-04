@@ -60,6 +60,25 @@ namespace bytewise
       template <typename type> static inline void run(visitor_type &, type &);
       template <typename type> static inline void run(visitor_type &, const type &);
     };
+    
+    template <typename, bool> struct map_iterator;
+    
+    template <bool multiple> struct map_iterator <map <>, multiple>
+    {
+      static inline void run(visitor_type &, target_type &);
+      static inline void run(visitor_type &, const target_type &);
+    };
+    
+    template <typename path, typename... tail, bool multiple> struct map_iterator <map <path, tail...>, multiple>
+    {
+      static inline void run(visitor_type &, target_type &);
+      static inline void run(visitor_type &, const target_type &);
+    };
+    
+    // Static methods
+    
+    static inline void visit(visitor_type &, target_type &);
+    static inline void visit(visitor_type &, const target_type &);
 	};
 };
 
