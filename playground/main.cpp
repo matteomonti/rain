@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "macros/progressive.hpp"
-
 class assignment_proxy
 {
 };
@@ -13,7 +11,7 @@ template <typename type> void operator << (type &, assignment_proxy)
 class transaction
 {
 public:
-  
+    
     int entrypoint = 0;
     
     virtual void run() = 0;
@@ -66,20 +64,6 @@ public:
         }
     }
 };
-
-int g()
-{
-    return 3;
-}
-
-void non_ritoro_niente()
-{
-}
-
-void devo_ritornare_void()
-{
-    return  /**/ g();
-}
 
 int main()
 {
